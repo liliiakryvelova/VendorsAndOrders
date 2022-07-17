@@ -79,14 +79,20 @@ namespace ToDoList.Tests
       }
 
     [TestMethod]
-    public void GetId_ItemsInstantiateWithAnIdAndGetterReturns_Int()
+    public void GetId_OrderssInstantiateWithAnIdAndGetterReturns_Int()
     {
       //Arrange
-      string description = "Walk the dog.";
-      Item newItem = new Item(description);
+      string vendorname = "Vendor 1";
+      string description = "Sell apples";
+      Vendor newVendor1 = new Vendor(vendorname, description);
+      string title1 = "Bread.";
+      string orderDescription1 = "Sell apples";
+      string price1 = "10";
+      Order newOrder1 = new Order(title1, orderDescription1, price1);
+      newVendor1.AddOrder(newOrder1);
 
       //Act
-      int result = newItem.Id;
+      int result = newOrder1.Id;
 
       //Assert
       Assert.AreEqual(1, result);
