@@ -84,11 +84,6 @@ namespace ToDoList.Tests
   [TestMethod]
   public void AddOrder_AssociatesOrderWithVendor_List()
   {
-      // Vendor selectedVendor = Vendor.Find(vendorId);
-      // Order myOrder = new Order(ordername, orderdescription, price);
-      // selectedVendor.AddOrder(myOrder);
-
-    
 
     //Arrange
     string vendorname = "Vendor 1";

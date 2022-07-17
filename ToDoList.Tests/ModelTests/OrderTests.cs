@@ -1,99 +1,96 @@
-// using Microsoft.VisualStudio.TestTools.UnitTesting;
-// using System.Collections.Generic;
-// using ToDoList.Models;
-// using System;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
+using System.Collections.Generic;
+using ToDoList.Models;
+using System;
 
-// namespace ToDoList.Tests
-// {
-//   [TestClass]
-//   public class ItemTests : IDisposable
-//   {
+namespace ToDoList.Tests
+{
+  [TestClass]
+  public class OrderTests
+  {
 
-//     public void Dispose()
-//     {
-//       Item.ClearAll();
-//     }
+    [TestMethod]
+    public void OrderConstructor_CreatesInstanceOfOrder_Order()
+    {
+      string title = "Bread.";
+      string orderDescription = "Sell apples";
+      string price = "10";
+      Order newOrder = new Order(title, orderDescription, price);
+      Assert.AreEqual(typeof(Order), newOrder.GetType());
+    }
 
-//     [TestMethod]
-//     public void ItemConstructor_CreatesInstanceOfItem_Item()
-//     {
-//       Record newItem = new Item("test");
-//       Assert.AreEqual(typeof(Item), newItem.GetType());
-//     }
+    [TestMethod]
+    public void SetTitle_ReturnsTitle_String()
+    {
+      //Arrange
+      string title = "Bread.";
+      string orderDescription = "Sell apples";
+      string price = "10";
 
-//     [TestMethod]
-//     public void GetDescription_ReturnsDescription_String()
-//     {
-//       //Arrange
-//       string description = "Walk the dog.";
+      //Act
+      
+      Order newOrder = new Order(title, orderDescription, price);
+      string result = newOrder.Title;
 
-//       //Act
-//       Item newItem = new Item(description);
-//       string result = newItem.Description;
+      //Assert
+      Assert.AreEqual(title, result);
+    }
 
-//       //Assert
-//       Assert.AreEqual(description, result);
-//     }
+      [TestMethod]
+      public void GetAll_ReturnsEmptyList_OrderList()
+      {
+        // Arrange
+        string vendorname = "Vendor 1";
+        string description = "Sell apples";
+        Vendor newVendor1 = new Vendor(vendorname, description);
+        
 
-//     [TestMethod]
-//     public void SetDescription_SetDescription_String()
-//     {
-//       //Arrange
-//       string description = "Walk the dog.";
-//       Item newItem = new Item(description);
+        // Act
+        List<Order> result = newVendor1.GetAllOrders();
 
-//       //Act
-//       string updatedDescription = "Do the dishes";
-//       newItem.Description = updatedDescription;
-//       string result = newItem.Description;
+        // Assert
+        Assert.AreEqual(0, result.Count);
+      }
 
-//       //Assert
-//       Assert.AreEqual(updatedDescription, result);
-//     }
+      [TestMethod]
+      public void GetAllOrders_ReturnsOrders_OrderList()
+      {
+        //Arrange
+        string vendorname = "Vendor 1";
+        string description = "Sell apples";
+        Vendor newVendor1 = new Vendor(vendorname, description);
+        string title1 = "Bread.";
+        string orderDescription1 = "Sell apples";
+        string price1 = "10";
+        Order newOrder1 = new Order(title1, orderDescription1, price1);
+        string title2 = "Bread.";
+        string orderDescription2 = "Sell apples";
+        string price2 = "10";
+        Order newOrder2 = new Order(title2, orderDescription2, price2);
+        newVendor1.AddOrder(newOrder1);
+        newVendor1.AddOrder(newOrder2);
 
-//     [TestMethod]
-//     public void GetAll_ReturnsEmptyList_ItemList()
-//     {
-//       // Arrange
-//       List<Item> newList = new List<Item> { };
 
-//       // Act
-//       List<Item> result = Item.GetAll();
+        //Act
+        List<Order> result = newVendor1.GetAllOrders();
 
-//       // Assert
-//       CollectionAssert.AreEqual(newList, result);
-//     }
+        //Assert
+        CollectionAssert.AreEqual(newVendor1.Orders, result);
+      }
 
-//     [TestMethod]
-//     public void GetAll_ReturnsItems_ItemList()
-//     {
-//       //Arrange
-//       string description01 = "Walk the dog";
-//       string description02 = "Wash the dishes";
-//       Item newItem1 = new Item(description01);
-//       Item newItem2 = new Item(description02);
-//       List<Item> newList = new List<Item> { newItem1, newItem2 };
+    [TestMethod]
+    public void GetId_ItemsInstantiateWithAnIdAndGetterReturns_Int()
+    {
+      //Arrange
+      string description = "Walk the dog.";
+      Item newItem = new Item(description);
 
-//       //Act
-//       List<Item> result = Item.GetAll();
+      //Act
+      int result = newItem.Id;
 
-//       //Assert
-//       CollectionAssert.AreEqual(newList, result);
-//     }
-
-//     [TestMethod]
-//     public void GetId_ItemsInstantiateWithAnIdAndGetterReturns_Int()
-//     {
-//       //Arrange
-//       string description = "Walk the dog.";
-//       Item newItem = new Item(description);
-
-//       //Act
-//       int result = newItem.Id;
-
-//       //Assert
-//       Assert.AreEqual(1, result);
-//     }
+      //Assert
+      Assert.AreEqual(1, result);
+    }
 
 //     [TestMethod]
 //     public void Find_ReturnsCorrectItem_Item()
@@ -110,5 +107,5 @@
 //       //Assert
 //       Assert.AreEqual(newItem2, result);
 //     }
-//   }
-// }
+  }
+}
