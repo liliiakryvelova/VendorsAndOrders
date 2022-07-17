@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Vendor page</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+  </head>
+  <body>
+    @using ToDoList.Models;
+
+    <h3>Here are all the Orders for this Vendor:</h3>
+
+    <ol>
+    @foreach (var order in @Model.Orders)
+    {
+      <li><a href='/vendors/@Model.Id/orders/@order.Id'>@order.Title</a></li>
+    }
+    </ol>
+
+    <p><a href='/vendors/@Model.Id/orders/new'>Add a new order</a></p>
+    <p><a href='/vendors'>Return to <em>Vendors</em> list</a></p>
+    <p><a href='/'>Return to Main Page</a></p>
+
+    <form action="/vendors/@Model.Id/orders/delete" method="post">
+      <button type="submit" name="button">Clear All Items</button>
+    </form>
+
+  </body>
+</html>
