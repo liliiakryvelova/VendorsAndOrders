@@ -105,5 +105,35 @@ namespace ToDoList.Tests
       Assert.AreEqual(newOrder1, result);
     }
 
+    [TestMethod]
+    public void DeleteOrder_FindOrderByOrderId_True()
+    {
+      //Arrange
+      string vendorname = "Vendor 1";
+      string description = "Sell apples";
+      Vendor newVendor1 = new Vendor(vendorname, description);
+
+      string title1 = "Bread.";
+      string orderDescription1 = "Sell apples";
+      string price1 = "10";
+      Order newOrder1 = new Order(title1, orderDescription1, price1);
+      newVendor1.AddOrder(newOrder1);
+
+      string title2 = "Bread.";
+      string orderDescription2 = "Sell apples";
+      string price2 = "10";
+      Order newOrder2 = new Order(title2, orderDescription2, price2);
+      newVendor1.AddOrder(newOrder2);
+
+      //Act
+      Order.DeleteOrder(newVendor1, 2);
+     
+     
+
+      //Assert
+      Assert.AreEqual(newVendor1.Orders.Count, 1);
+      Assert.AreEqual(newOrder1.Id, newVendor1.Orders[0].Id);
+    }
+
   }
 }
