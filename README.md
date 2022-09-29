@@ -1,4 +1,4 @@
-# _{Vendor and Order Tracker}_
+# Vendor and Order Tracker
 
 #### By _**{Liliia Kryvelova}**_
 
